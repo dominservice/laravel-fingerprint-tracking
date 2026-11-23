@@ -1,23 +1,14 @@
 # Laravel Fingerprint Tracking
 
+Laravel Fingerprint Tracking records browser and page interaction signals and correlates public events with form submissions.
+
+Developed by Mateusz Domin at [Domin Software](https://dominsoftware.it/).
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dominservice/laravel-fingerprint-tracking.svg?style=flat-square)](https://packagist.org/packages/dominservice/laravel-fingerprint-tracking)
 [![Total Downloads](https://img.shields.io/packagist/dt/dominservice/laravel-fingerprint-tracking.svg?style=flat-square)](https://packagist.org/packages/dominservice/laravel-fingerprint-tracking)
 [![License](https://img.shields.io/packagist/l/dominservice/laravel-fingerprint-tracking.svg?style=flat-square)](https://packagist.org/packages/dominservice/laravel-fingerprint-tracking)
 
-*A lightweight Laravel package for browser fingerprinting, movement tracking, public form correlation and seamless cooperation with `dominservice/invis-captcha`.*
-
-## Version Matrix
-
-| Laravel | Supported? | Notes |
-|---------|------------|-------|
-| **10.x** | ✅ | Requires PHP ≥ 8.1 |
-| **11.x** | ✅ | Streamlined structure supported |
-| **12.x** | ✅ | Same wiring as 11 |
-| **13.x** | ✅ | Requires the PHP version supported by Laravel 13 |
-
----
-
-## ✨ Features
+## Key Features
 
 | Module | Purpose | Toggle |
 |--------|---------|--------|
@@ -28,6 +19,17 @@
 | **invis-captcha bridge** | Shares fingerprint and event correlation with `dominservice/invis-captcha`. | automatic |
 | **Optional geo enrichment** | Can enrich events with IPRegistry security/geo data. | `geo.enabled` |
 | **Public-safe identifiers** | Exposes only ULIDs publicly, never incremental database IDs. | always on |
+
+---
+
+## Requirements
+
+| Laravel | Supported? | Notes |
+|---------|------------|-------|
+| **10.x** | ✅ | Requires PHP ≥ 8.1 |
+| **11.x** | ✅ | Streamlined structure supported |
+| **12.x** | ✅ | Same wiring as 11 |
+| **13.x** | ✅ | Requires the PHP version supported by Laravel 13 |
 
 ---
 
@@ -92,7 +94,7 @@ The package registers its own route automatically through the service provider.
 
 ---
 
-## Basic Usage
+## Quick Start
 
 ### 1. Add the Blade directive to your layout
 
@@ -131,6 +133,8 @@ $payload = $request->attributes->get('fingerprint_tracking_payload');
 ---
 
 ## How It Works
+
+The package can store a browser fingerprint, browser and OS details, language and screen size. Tracking events can include the URL, referrer, IP address and the correlation ID submitted with a form. IPRegistry enrichment is configurable and can add region, country and network signals. Use the fingerprint for correlation with other signals.
 
 1. The frontend generates a browser fingerprint.
 2. The package sends a public tracking event to `POST /fingerprint-tracking/events`.
@@ -202,7 +206,7 @@ so advanced projects can hook into the flow without patching package internals.
 - The browser fingerprint is not treated as a trusted identity on its own.
 - Auth binding uses a configurable morph relation, so projects can follow integer IDs, UUIDs, ULIDs or generic string identifiers.
 - The package is intended for correlation, enrichment and abuse mitigation support.
-- For stronger bot protection, use it together with `dominservice/invis-captcha`.
+- Use [Invisible CAPTCHA for Laravel](https://github.com/dominservice/invis-captcha) when the form also needs bot scoring.
 
 ---
 
@@ -212,3 +216,15 @@ so advanced projects can hook into the flow without patching package internals.
 - Safe to use in projects with `dominservice/laravel-config`.
 - Intended to be reusable in broader ecosystems such as DominPress modules.
 - Does not assume a specific user primary-key format.
+
+## Support
+
+Report package issues on [GitHub](https://github.com/dominservice/laravel-fingerprint-tracking/issues).
+
+If this package helps you, you can buy me a coffee to support its maintenance.
+
+[![Buy me a coffee on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dominservice)
+
+## License
+
+[MIT](LICENSE)
